@@ -167,7 +167,7 @@ export const forgotPasswordUserServices = async (email: string) => {
 };
 
 export const resetPasswordUserServices = async (
-  userId: number,
+  userId: string,
   password: string,
 ) => {
   try {
@@ -188,7 +188,7 @@ export const resetPasswordUserServices = async (
 
 export const editUserServices = async (
   body: User,
-  userId: number,
+  userId: string,
   file?: string,
 ) => {
   try {
@@ -268,7 +268,7 @@ export const sendVerificationChangeMailServices = async (email: string) => {
   }
 };
 
-export const changeEmailServices = async (id: number, email: string) => {
+export const changeEmailServices = async (id: string, email: string) => {
   try {
     const user = await prisma.user.findFirst({
       where: { id },

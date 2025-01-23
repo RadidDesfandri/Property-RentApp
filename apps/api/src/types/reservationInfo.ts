@@ -1,6 +1,6 @@
 export interface IReservationUser {
   booking_id?: string;
-  user_id: number;
+  user_id: string;
 }
 
 export interface IStatus {

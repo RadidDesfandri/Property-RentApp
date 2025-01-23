@@ -31,7 +31,7 @@ export const getRoomServices = async (propertyId: string) => {
 
 export const createRoomServices = async (
   propertyId: string,
-  tenantId: number,
+  tenantId: string,
   body: Room,
   facility: string[],
   files: Express.Multer.File[],

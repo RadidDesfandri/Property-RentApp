@@ -167,7 +167,7 @@ export const forgotPasswordTenantServices = async (email: string) => {
 };
 
 export const resetPasswordTenantServices = async (
-  userId: number,
+  userId: string,
   password: string,
 ) => {
   try {
@@ -188,7 +188,7 @@ export const resetPasswordTenantServices = async (
 
 export const editTenantServices = async (
   body: Tenant,
-  userId: number,
+  userId: string,
   file?: string,
 ) => {
   try {
@@ -268,7 +268,7 @@ export const sendVerificationChangeMailTServices = async (email: string) => {
   }
 };
 
-export const changeEmailTServices = async (id: number, email: string) => {
+export const changeEmailTServices = async (id: string, email: string) => {
   try {
     const user = await prisma.tenant.findFirst({
       where: { id },

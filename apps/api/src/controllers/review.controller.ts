@@ -28,7 +28,7 @@ export class ReviewController {
   async getReviewbyTenant(req: Request, res: Response) {
     try {
       const tenant_id = req.user?.id;
-      const data = await reviewServices.getReviewbyTenant(+tenant_id!);
+      const data = await reviewServices.getReviewbyTenant(tenant_id!);
       res.status(200).send({ status: 'ok', data });
     } catch (error) {
       responseError(res, error);

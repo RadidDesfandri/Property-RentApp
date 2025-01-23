@@ -23,7 +23,7 @@ export class reviewService {
         data: {
           content,
           reservation_Id: reservation_id,
-          user_Id: +reservation?.user_Id!,
+          user_Id: reservation?.user_Id!,
           ratings: ratings,
           room_Id: reservation?.room_Id!,
         },
@@ -34,7 +34,7 @@ export class reviewService {
       throw error;
     }
   }
-  async getReviewbyTenant(tenant_id: number) {
+  async getReviewbyTenant(tenant_id: string) {
     try {
       const data = await prisma.review.findMany({
         where: { reservation: { room: { tenant_Id: tenant_id } } },
@@ -68,17 +68,17 @@ export class reviewService {
       throw error;
     }
   }
-  async feedBackReview(feedback: string, review_id: number) {
+  async feedBackReview(feedback: string, review_id: string) {
     try {
       await prisma.review.update({
-        where: { id: +review_id },
+        where: { id: review_id },
         data: { feedBack: feedback },
       });
     } catch (error: any) {
       throw error;
     }
   }
-  async getReviewByUser(user_id: number) {
+  async getReviewByUser(user_id: string) {
     try {
       const data = await prisma.review.findMany({
         where: { user_Id: user_id },

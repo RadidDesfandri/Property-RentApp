@@ -88,10 +88,7 @@ export class UserController {
 
   async resetPasswordUser(req: Request, res: Response, next: NextFunction) {
     try {
-      const result = await resetPasswordUserServices(
-        Number(req.user?.id),
-        req.body.password,
-      );
+      await resetPasswordUserServices(req.user?.id!, req.body.password);
       return res.status(200).send({
         status: 'ok',
         msg: 'Reset password success',
@@ -105,7 +102,7 @@ export class UserController {
     try {
       const user = await editUserServices(
         req.body,
-        +req.user?.id!,
+        req.user?.id!,
         req.file?.filename!,
       );
       return res.status(200).send({
@@ -135,7 +132,10 @@ export class UserController {
 
   async changeEmail(req: Request, res: Response, next: NextFunction) {
     try {
-      const {newMail, token} = await changeEmailServices(Number(req.user?.id), req.body.email);
+      const { newMail, token } = await changeEmailServices(
+        req.user?.id!,
+        req.body.email,
+      );
       return res.status(200).send({
         status: 'ok',
         msg: 'Change email success,  please check your email for verification',

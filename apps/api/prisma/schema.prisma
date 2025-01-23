@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
@@ -18,7 +18,7 @@ enum Provider {
 }
 
 model User {
-  id          Int           @id @default(autoincrement())
+  id          String        @id @default(auto()) @map("_id") @db.ObjectId
   email       String        @unique
   username    String?       @unique
   phone       String?
@@ -36,7 +36,7 @@ model User {
 }
 
 model Tenant {
-  id         Int        @id @default(autoincrement())
+  id         String     @id @default(auto()) @map("_id") @db.ObjectId
   email      String     @unique
   username   String?    @unique
   phone      String?
@@ -59,27 +59,27 @@ enum Category {
 }
 
 model Property {
-  id          String        @id @default(cuid())
+  id          String        @id @default(auto()) @map("_id") @db.ObjectId
   name        String        @unique
-  description String        @db.LongText()
+  description String       
   category    Category
   thumbnail   String
   location    String
   isActive    Boolean       @default(false)
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt()
-  tenant_Id   Int
+  tenant_Id   String        @db.ObjectId
   tenant      Tenant        @relation(fields: [tenant_Id], references: [id])
   PropertyPic PropertyPic[]
   Room        Room[]
 }
 
 model PropertyPic {
-  id          Int      @id @default(autoincrement())
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
   url         String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt()
-  property_Id String
+  property_Id String   @db.ObjectId
   property    Property @relation(fields: [property_Id], references: [id])
 }
 
@@ -90,52 +90,52 @@ enum Type {
 }
 
 model Room {
-  id            String        @id @default(uuid())
-  type          Type          @default(Standard)
-  price         Float
-  capacity      Int           @default(1)
-  description   String        @db.LongText()
-  pricediscount Float
-  availability  Boolean       @default(true)
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt()
-  property_Id   String
-  tenant_Id     Int
-  tenant        Tenant        @relation(fields: [tenant_Id], references: [id])
-  property      Property      @relation(fields: [property_Id], references: [id])
-  facility      Facility[]
-  RoomPic       RoomPic[]
-  Review        Review[]
-  Reservation   Reservation[]
-  RoomAvailability  RoomAvailability[]  
+  id               String             @id @default(auto()) @map("_id") @db.ObjectId
+  type             Type               @default(Standard)
+  price            Float
+  capacity         Int                @default(1)
+  description      String
+  pricediscount    Float
+  availability     Boolean            @default(true)
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt()
+  property_Id      String             @db.ObjectId
+  tenant_Id        String             @db.ObjectId
+  tenant           Tenant             @relation(fields: [tenant_Id], references: [id])
+  property         Property           @relation(fields: [property_Id], references: [id])
+  facility         Facility[]
+  RoomPic          RoomPic[]
+  Review           Review[]
+  Reservation      Reservation[]
+  RoomAvailability RoomAvailability[]
 }
 
 model Facility {
-  id     Int     @id @default(autoincrement())
+  id     String  @id @default(auto()) @map("_id") @db.ObjectId
   name   String
-  roomId String?
+  roomId String? @db.ObjectId
   Room   Room?   @relation(fields: [roomId], references: [id])
 }
 
 model RoomPic {
-  id        Int      @id @default(autoincrement())
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
   url       String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt()
-  room_Id   String
+  room_Id   String   @db.ObjectId
   room      Room     @relation(fields: [room_Id], references: [id])
 }
 
 model RoomAvailability {
-  id         Int      @id @default(autoincrement())
-  startDate  DateTime
-  endDate    DateTime
-  isAvailable Boolean  @default(true)
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  startDate       DateTime
+  endDate         DateTime
+  isAvailable     Boolean  @default(true)
   priceAdjustment Float?
-  room_Id    String
-  room       Room     @relation(fields: [room_Id], references: [id])
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt()
+  room_Id         String   @db.ObjectId
+  room            Room     @relation(fields: [room_Id], references: [id])
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt()
 }
 
 enum StatusRes {
@@ -151,10 +151,10 @@ enum Method {
 }
 
 model Reservation {
-  id           String    @id @default(uuid())
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
   price        Float
   startDate    DateTime
-  guest        Int      @default(1)
+  guest        Int       @default(1)
   endDate      DateTime
   method       Method    @default(VA)
   paymentProof String?
@@ -163,22 +163,22 @@ model Reservation {
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt()
   Review       Review?
-  user_Id      Int
-  room_Id      String
+  user_Id      String    @db.ObjectId
+  room_Id      String    @db.ObjectId
   room         Room      @relation(fields: [room_Id], references: [id])
   user         User      @relation(fields: [user_Id], references: [id])
 }
 
 model Review {
-  id             Int         @id @default(autoincrement())
-  content        String      @db.LongText()
+  id             String      @id @default(auto()) @map("_id") @db.ObjectId
+  content        String
   ratings        String
   createdAt      DateTime    @default(now())
   updatedAt      DateTime    @updatedAt()
-  feedBack       String?     @db.LongText()
-  user_Id        Int
-  room_Id        String
-  reservation_Id String      @unique
+  feedBack       String?
+  user_Id        String      @db.ObjectId
+  room_Id        String      @db.ObjectId
+  reservation_Id String      @unique @db.ObjectId
   user           User        @relation(fields: [user_Id], references: [id])
   room           Room        @relation(fields: [room_Id], references: [id])
   reservation    Reservation @relation(fields: [reservation_Id], references: [id])

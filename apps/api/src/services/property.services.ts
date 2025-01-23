@@ -4,7 +4,7 @@ import { Property, Room } from '@prisma/client';
 const base_url = process.env.BASE_URL_BACKEND || 'http://localhost:8000/api';
 
 export const createPropertyServices = async (
-  TenantId: number,
+  TenantId: string,
   body: Property,
   file: string,
 ) => {
@@ -107,7 +107,7 @@ export const getPropertyByidServices = async (propertyId: string) => {
     throw error;
   }
 };
-export const getPropertyByTenantIdServices = async (tenantId: number) => {
+export const getPropertyByTenantIdServices = async (tenantId: string) => {
   try {
     const property = await prisma.property.findMany({
       where: { tenant_Id: tenantId },
@@ -120,7 +120,7 @@ export const getPropertyByTenantIdServices = async (tenantId: number) => {
     throw error;
   }
 };
-export const getPropertyPublishServices = async (tenantId: number) => {
+export const getPropertyPublishServices = async (tenantId: string) => {
   try {
     const property = await prisma.property.findMany({
       where: { tenant_Id: tenantId, isActive: true },
@@ -133,7 +133,7 @@ export const getPropertyPublishServices = async (tenantId: number) => {
     throw error;
   }
 };
-export const getPropertyDraftServices = async (tenantId: number) => {
+export const getPropertyDraftServices = async (tenantId: string) => {
   try {
     const property = await prisma.property.findMany({
       where: { tenant_Id: tenantId, isActive: false },
@@ -187,7 +187,7 @@ export const unpublishServices = async (propertyId: string) => {
 };
 export const editPropertyServices = async (
   propertyId: string,
-  tenant_Id: number,
+  tenant_Id: string,
   body: Property,
   file?: string,
 ) => {

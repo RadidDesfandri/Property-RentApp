@@ -61,7 +61,7 @@ export class tenantTransactionInfoService {
       throw error;
     }
   }
-  async getNotification(tenant_id: number) {
+  async getNotification(tenant_id: string) {
     try {
       const confirmations = await prisma.reservation.findMany({
         where: { room: { tenant_Id: tenant_id }, statusRes: 'CONFIRMATION' },

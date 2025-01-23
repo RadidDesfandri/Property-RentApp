@@ -46,7 +46,7 @@ export class ReservationController {
             startDate,
             endDate,
             paymentLink: '',
-            user_Id: +req.user?.id!,
+            user_Id: req.user?.id!,
             room_Id: room_id,
           },
         });
@@ -137,7 +137,7 @@ export class ReservationController {
           endDate,
           method: 'TF',
           statusRes: 'PENDING',
-          user_Id: +req.user?.id!,
+          user_Id: req.user?.id!,
           room_Id: room_id,
         },
       });

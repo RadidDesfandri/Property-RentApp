@@ -1,6 +1,6 @@
 import prisma from '../prisma';
 export interface IPropsReport {
-  tenant_id: number;
+  tenant_id: string;
 }
 export class reportSalesService {
   constructor() {}
@@ -51,7 +51,7 @@ export class reportSalesService {
       throw error;
     }
   }
-  async getReportByUser(tenant_id: number) {
+  async getReportByUser(tenant_id: string) {
     try {
       const users = await prisma.user.findMany({
         include: {
@@ -87,7 +87,7 @@ export class reportSalesService {
       throw error;
     }
   }
-  async getReportByReservation(tenant_id: number) {
+  async getReportByReservation(tenant_id: string) {
     try {
       const reservations = await prisma.reservation.findMany({
         where: { room: { tenant_Id: tenant_id }, statusRes: 'PAID' },
@@ -108,7 +108,7 @@ export class reportSalesService {
       return data;
     } catch (error) {}
   }
-  async getPropertyReportCalendar(tenant_id: number) {
+  async getPropertyReportCalendar(tenant_id: string) {
     try {
       const reservations = await prisma.reservation.findMany({
         where: { statusRes: { not: 'CANCEL' }, room: { tenant_Id: tenant_id } },

@@ -88,10 +88,7 @@ export class TenantController {
 
   async resetPasswordTenant(req: Request, res: Response, next: NextFunction) {
     try {
-      await resetPasswordTenantServices(
-        Number(req.user?.id),
-        req.body.password,
-      );
+      await resetPasswordTenantServices(req.user?.id!, req.body.password);
       return res.status(200).send({
         status: 'ok',
         msg: 'Reset password success',
@@ -105,11 +102,11 @@ export class TenantController {
     try {
       const user = await editTenantServices(
         req.body,
-        +req.user?.id!,
+        req.user?.id!,
         req.file?.filename!,
       );
       return res.status(200).send({
-        msg: "User edited",
+        msg: 'User edited',
         user,
       });
     } catch (error) {
@@ -135,7 +132,10 @@ export class TenantController {
 
   async changeEmail(req: Request, res: Response, next: NextFunction) {
     try {
-      const {newMail, token} = await changeEmailTServices(Number(req.user?.id), req.body.email);
+      const { newMail, token } = await changeEmailTServices(
+        req.user?.id!,
+        req.body.email,
+      );
       return res.status(200).send({
         status: 'ok',
         msg: 'Change email success,  please check your email for verification',

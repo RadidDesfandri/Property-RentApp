@@ -102,13 +102,13 @@ export class reservationInfoService {
       throw error;
     }
   }
-  async getPastReservation(user_id: number) {
+  async getPastReservation(user_id: string) {
     try {
       const now = Date.now();
       const date = new Date(now);
       console.log(now);
       const data = await prisma.reservation.findMany({
-        where: { user_Id: +user_id },
+        where: { user_Id: user_id },
         include: {
           user: { select: { username: true, phone: true, email: true } },
           room: {
