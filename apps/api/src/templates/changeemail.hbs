@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ganti email</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f9f9f9;
+    }
+    .container {
+      max-width: 768px;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .container img {
+      width: 300px;
+      height: 300px;
+      display: block;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin: 10px 0;
+    }
+    h2 {
+      font-size: 1.125rem;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+    h3 {
+      margin-top: 20px;
+      font-size: 1rem;
+    }
+    p {
+      font-size: 1rem;
+      margin: 10px 0;
+    }
+    .button-container {
+      margin: 20px 0;
+      display: flex;
+      justify-content: center;
+    }
+    .reset-button {
+      padding: 8px 16px;
+      border: 2px solid #5ba5a5;
+      background-color: transparent;
+      color: #5ba5a5;
+      font-size: 1rem;
+      font-weight: 500;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .reset-button:hover {
+      background-color: #5ba5a5;
+      color: white;
+    }
+    .footer {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div>
+      <img src={{imageurl3}} alt="Image" />
+    </div>
+    <h1>Ganti Email</h1>
+    <h2>Hi {{username}}</h2>
+    <h3>Ada permintaan untuk mengubah email Anda</h3>
+    <p>
+      Jika anda tidak melakukan permintaan ini silahkan abaikan email ini, mohon
+      click button dibawah ini untuk rubah email anda
+    </p>
+    <div class="button-container">
+      <a href={{link}} target="_blank" class="reset-button">Reset Password</a>
+    </div>
+    <div class="footer">
+      <p>Terimakasih,</p>
+      <p>Tim Nezz</p>
+    </div>
+  </div>
+</body>
+</html>

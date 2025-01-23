@@ -1,0 +1,48 @@
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <title style='font:bold'>Konfirmasi Pembayaran</title>
+    <style>
+      h6{ font-size:larger; }
+    </style>
+  </head>
+  <body>
+    <h2>Hello {{username}}</h2>
+    <p>Terima kasih telah melakukan pembayaran! Kami senang mengonfirmasi bahwa
+      reservasi Anda di
+      {{property}}
+      telah berhasil. Berikut adalah detail pemesanan Anda:</p>
+    <h6 style='margin-top: 20px;'>Detail Pemesanan</h6>
+    <ul>
+      <li>Nama Pemesan: {{username}}</li>
+      <li>Tanggal Check-in: {{checkin}}</li>
+      <li>Tanggal Check-out: {{checkout}}</li>
+      <li>Jumlah Tamu: {{guest}}</li>
+      <li>Total Pembayaran: {{price}}</li>
+    </ul>
+    <h6>Tata Cara Penggunaan</h6>
+    <ol>
+      <li>Check-in: Silakan tiba di tanggal
+        {{checkin}}
+        sesudah pukul 13.59 WIB untuk melakukan check-in</li>
+      <li>Check-out: Pastikan untuk check-out sebelum pukul 11.00 WIB
+        {{checkout}}.</li>
+      <li>Kebersihan: Harap menjaga kebersihan selama menginap. Semua fasilitas
+        harus digunakan dengan baik.</li>
+    </ol>
+    <h6>Peraturan Property terkait
+    </h6>
+    <ul>
+      <li>Dilarang merokok di dalam properti.</li>
+      <li>Tidak diperkenankan membawa hewan peliharaan tanpa izin sebelumnya.</li>
+      <li>Harap menghormati tetangga dan menjaga kebisingan.</li>
+    </ul>
+    <p style='margin-top: 10px;'>Jika Anda memiliki pertanyaan atau membutuhkan
+      bantuan lebih lanjut, jangan ragu untuk menghubungi kami
+    </p>
+    <p style='margin-top: 10px;'>Terima kasih telah memilih kami. Kami berharap
+      Anda memiliki pengalaman menginap yang menyenangkan!</p>
+    <p style='margin-top: 10px;'>Salam hangat,</p>
+  </body>
+</html>

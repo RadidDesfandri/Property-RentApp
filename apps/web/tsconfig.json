@@ -22,6 +22,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/(home)/(dashboardPage)/dashboard/propertyreport/_components/index.tsx", "src/app/(home)/(dashboardPage)/dashboard/propertyreport/_components/calendar.jsx"],
   "exclude": ["node_modules"]
 }

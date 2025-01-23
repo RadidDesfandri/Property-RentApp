@@ -10,9 +10,10 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "types": ["./src/custom.d.ts"]
   },
   // "include": ["src/**/*"],
-  "include": ["**/*.ts"],
+  "include": ["**/*.ts", "src/helper/midtrans.js"],
   "exclude": ["node_modules"]
 }
