@@ -11,7 +11,9 @@ import path from 'path';
 import fs from 'fs';
 import handlebars from 'handlebars';
 const secret = process.env.SECRET_KEY || 'nezztar';
-const base_url = process.env.BASE_URL_BACKEND || 'http://localhost:8000/api';
+const base_url =
+  process.env.BASE_URL_BACKEND ||
+  'https://property-rent-app-one.vercel.app/api';
 const imageurl = process.env.BASE_URL_BACKEND + '/public/welcome2.svg';
 const imageurl2 = process.env.BASE_URL_BACKEND + '/public/forgotpassmail.svg';
 const imageurl3 = process.env.BASE_URL_BACKEND + '/public/changeemail.svg';
