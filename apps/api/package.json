@@ -41,7 +41,6 @@
     "@types/node-schedule": "^2.1.7",
     "@types/nodemailer": "^6.4.15",
     "@types/uuid": "^10.0.0",
-    "daisyui": "^4.12.10",
     "prisma": "^5.7.1",
     "tsc-alias": "^1.8.10",
     "tsconfig-paths": "^4.2.0"
