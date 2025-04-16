@@ -23,6 +23,7 @@ import { ReviewRouter } from './routers/review.router';
 import { SosmedLoginRouter } from './routers/sosmedlogin.router';
 import { scheduleReminders } from './helper/reminder';
 import { ReportSalesRouter } from './routers/reportsales.router';
+import corsOptions from './config/corsOption';
 
 export default class App {
   private app: Express;
@@ -34,7 +35,7 @@ export default class App {
     this.scheduler();
   }
   private configure(): void {
-    this.app.use(cors());
+    this.app.use(cors(corsOptions));
     this.app.use(json());
     this.app.use(urlencoded({ extended: true }));
     this.app.use(
